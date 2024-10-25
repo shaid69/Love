@@ -16,10 +16,9 @@ yesBtn.addEventListener('click', () => {
     }, 500); // Wait for the popup to fully fade out
 });
 
-// Function to swap buttons (optional: if needed for playful interaction)
+// Function to swap buttons on 'No' button hover
 noBtn.addEventListener('mouseover', () => {
-    const yesPosition = yesBtn.style.order;
-    const noPosition = noBtn.style.order;
-    yesBtn.style.order = noPosition === '' ? 2 : noPosition;
-    noBtn.style.order = yesPosition === '' ? 1 : yesPosition;
+    const parent = noBtn.parentNode; // Get the parent of the button group
+    parent.appendChild(yesBtn); // Move 'Yes' button to the end
+    parent.insertBefore(noBtn, yesBtn); // Move 'No' button before 'Yes'
 });
