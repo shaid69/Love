@@ -16,9 +16,19 @@ yesBtn.addEventListener('click', () => {
     }, 500); // Wait for the popup to fully fade out
 });
 
-// Function to swap buttons on 'No' button hover
+// Function to swap buttons infinitely
+let isSwapped = false; // Flag to track the swap state
+
 noBtn.addEventListener('mouseover', () => {
     const parent = noBtn.parentNode; // Get the parent of the button group
-    parent.appendChild(yesBtn); // Move 'Yes' button to the end
-    parent.insertBefore(noBtn, yesBtn); // Move 'No' button before 'Yes'
+
+    if (!isSwapped) {
+        parent.appendChild(noBtn); // Move 'No' button to the end
+        parent.insertBefore(yesBtn, noBtn); // Move 'Yes' button before 'No'
+        isSwapped = true; // Set the swap flag to true
+    } else {
+        parent.appendChild(yesBtn); // Move 'Yes' button to the end
+        parent.insertBefore(noBtn, yesBtn); // Move 'No' button before 'Yes'
+        isSwapped = false; // Reset the swap flag
+    }
 });
